@@ -20,27 +20,27 @@ void KEY_Init(void)
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
 }
-//°´¼ü´¦Àíº¯Êı
-//·µ»Ø°´¼üÖµ
-//mode:0,²»Ö§³ÖÁ¬Ğø°´;1,Ö§³ÖÁ¬Ğø°´;
-//0£¬Ã»ÓĞÈÎºÎ°´¼ü°´ÏÂ
-//1£¬KEY0°´ÏÂ
-//2£¬KEY1°´ÏÂ
-//3£¬KEY2°´ÏÂ 
-//4£¬KEY3°´ÏÂ WK_UP
-//×¢Òâ´Ëº¯ÊıÓĞÏìÓ¦ÓÅÏÈ¼¶,KEY0>KEY1>KEY2>KEY3!!
+//æŒ‰é”®å¤„ç†å‡½æ•° Button process function
+//è¿”å›æŒ‰é”®å€¼ return button value
+//mode:0,ä¸æ”¯æŒè¿ç»­æŒ‰ No continuously pressing;1,æ”¯æŒè¿ç»­æŒ‰ support continuously pressing;
+//0ï¼Œæ²¡æœ‰ä»»ä½•æŒ‰é”®æŒ‰ä¸‹ No button pressed
+//1ï¼ŒKEY0æŒ‰ä¸‹ KEY0 pressed
+//2ï¼ŒKEY1æŒ‰ä¸‹ KEY1 pressed
+//3ï¼ŒKEY2æŒ‰ä¸‹ KEY2 pressed
+//4ï¼ŒKEY3æŒ‰ä¸‹ WK_UP KEY3 pressed
+//æ³¨æ„æ­¤å‡½æ•°æœ‰å“åº”ä¼˜å…ˆçº§,KEY0>KEY1>KEY2>KEY3!! Note this function has response priority
 u8 KEY_Scan(u8 mode)
 {	 
-	static u8 key_up=1;//°´¼ü°´ËÉ¿ª±êÖ¾
-	if(mode)key_up=1;  //Ö§³ÖÁ¬°´		  
+	static u8 key_up=1;//æŒ‰é”®æŒ‰æ¾å¼€æ ‡å¿— Key released 
+	if(mode)key_up=1;  //æ”¯æŒè¿æŒ‰	support continuously pressing	  
 	if(key_up&&(KEY0==0||KEY1==0||KEY2==0||WK_UP==1))
 	{
-		delay_ms(10);//È¥¶¶¶¯ 
+		delay_ms(10);//å»æŠ–åŠ¨ Debounce
 		key_up=0;
 		if(KEY0==0)return KEY0_PRES;
 		else if(KEY1==0)return KEY1_PRES;
 		else if(KEY2==0)return KEY2_PRES;
 		else if(WK_UP==1)return WKUP_PRES;
 	}else if(KEY0==1&&KEY1==1&&KEY2==1&&WK_UP==0)key_up=1; 	    
- 	return 0;// ÎŞ°´¼ü°´ÏÂ
+ 	return 0;// æ— æŒ‰é”®æŒ‰ä¸‹ No key pressed
 }
