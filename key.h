@@ -1,38 +1,25 @@
 #ifndef __KEY_H
 #define __KEY_H	 
 #include "sys.h"
-//////////////////////////////////////////////////////////////////////////////////	 
-//±¾³ÌĞòÖ»¹©Ñ§Ï°Ê¹ÓÃ£¬Î´¾­×÷ÕßĞí¿É£¬²»µÃÓÃÓÚÆäËüÈÎºÎÓÃÍ¾
-//ALIENTEKÕ½½¢STM32¿ª·¢°å
-//°´¼üÇı¶¯´úÂë	   
-//ÕıµãÔ­×Ó@ALIENTEK
-//¼¼ÊõÂÛÌ³:www.openedv.com
-//ĞŞ¸ÄÈÕÆÚ:2012/9/3
-//°æ±¾£ºV1.0
-//°æÈ¨ËùÓĞ£¬µÁ°æ±Ø¾¿¡£
-//Copyright(C) ¹ãÖİÊĞĞÇÒíµç×Ó¿Æ¼¼ÓĞÏŞ¹«Ë¾ 2009-2019
-//All rights reserved									  
-//////////////////////////////////////////////////////////////////////////////////   	 
-
 
 //#define KEY0 PEin(4)   	//PE4
 //#define KEY1 PEin(3)	//PE3 
 //#define KEY2 PEin(2)	//PE2
 //#define WK_UP PAin(0)	//PA0  WK_UP
 
-#define KEY0  GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4)//¶ÁÈ¡°´¼ü0
-#define KEY1  GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_3)//¶ÁÈ¡°´¼ü1
-#define KEY2  GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2)//¶ÁÈ¡°´¼ü2 
-#define WK_UP   GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_0)//¶ÁÈ¡°´¼ü3(WK_UP) 
+#define KEY0  GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4)//è¯»å–æŒ‰é”®0 Read Button0
+#define KEY1  GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_3)//è¯»å–æŒ‰é”®1 Read Button1
+#define KEY2  GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2)//è¯»å–æŒ‰é”®2 Read Button2
+#define WK_UP   GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_0)//è¯»å–æŒ‰é”®3(WK_UP) Read Button3(WK_UP)
 
  
 
-#define KEY0_PRES 	1	//KEY0°´ÏÂ
-#define KEY1_PRES	2	//KEY1°´ÏÂ
-#define KEY2_PRES	3	//KEY2°´ÏÂ
-#define WKUP_PRES   4	//KEY_UP°´ÏÂ(¼´WK_UP/KEY_UP)
+#define KEY0_PRES 	1	//KEY0æŒ‰ä¸‹ Press KEY0
+#define KEY1_PRES	2	//KEY1æŒ‰ä¸‹ Press KEY1
+#define KEY2_PRES	3	//KEY2æŒ‰ä¸‹ Press KEY2
+#define WKUP_PRES   4	//KEY_UPæŒ‰ä¸‹(å³WK_UP/KEY_UP) Press KEY_UP
 
 
-void KEY_Init(void);//IO³õÊ¼»¯
-u8 KEY_Scan(u8);  	//°´¼üÉ¨Ãèº¯Êı					    
+void KEY_Init(void);//IOåˆå§‹åŒ– IO initialization
+u8 KEY_Scan(u8);  	//æŒ‰é”®æ‰«æå‡½æ•°	KEY scan function				    
 #endif
