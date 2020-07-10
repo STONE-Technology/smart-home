@@ -5,7 +5,7 @@
 
 #define LivingRoom   0x09
 #define Restuarant   0x0a
-#define BathRomm 		 0x0b
+#define BathRoom 		 0x0b
 #define ChildrenRoom 0x0f
 #define LightOn      0x00
 #define LightOff     0x01
